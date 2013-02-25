@@ -11,37 +11,36 @@ import net.liftweb.util.Props
 
 class PlurkAuthorization {
 
-  def getPlurkAPI = {
+  private lazy val plurkAPI = {
 
     val callback = Props.get("plurk.callback", "http://localhost:8080/backstab")
     val appKey = Props.get("plurk.appKey", "yAW0goxD23qF")
     val appSecret = Props.get("plurk.appSecret", "agKpMI6qImQIzhJm11b3t9mvuZo7xpny")
 
     PlurkAPIBox.get.openOr(PlurkAPI.withCallback(appKey, appSecret, callback))
-
   }
 
-  def redirectIfNotAuthorized(plurkAPI: PlurkAPI) {
+  def redirectToAuthURL {
 
-    plurkAPI.OAuthUtils.checkToken.failed.foreach { exception =>
+    PlurkAPIBox.set(Some(plurkAPI))
 
-      PlurkAPIBox.set(Some(plurkAPI))
+    val authURL = plurkAPI.getAuthorizationURL
 
-      val authURL = plurkAPI.getAuthorizationURL
-
-      authURL.foreach { S.redirectTo }
-      authURL.failed.foreach { 
-        S.redirectTo("/", () => S.error("無法取得噗浪驗證網址，請稍候再試")) 
-      }
+    authURL.foreach { S.redirectTo }
+    authURL.failed.foreach { 
+      S.redirectTo("/", () => S.error("無法取得噗浪驗證網址，請稍候再試")) 
     }
   }
 
+  def authorizePlurk(code: String) {
+    plurkAPI.authorize(code).failed.foreach { _ => redirectToAuthURL }
+  }
+
   def render = {
-    val plurkAPI = getPlurkAPI
 
     S.param("oauth_verifier").toOption match {
-      case Some(code) => plurkAPI.authorize(code)
-      case None => redirectIfNotAuthorized(plurkAPI)
+      case Some(code) => authorizePlurk(code)
+      case None => plurkAPI.OAuthUtils.checkToken.failed.foreach(_ => redirectToAuthURL)
     }
 
     PassThru
