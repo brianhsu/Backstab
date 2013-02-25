@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>噗浪背刺網</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- Le styles -->
+    <link href="asset/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="asset/css/custom.css" rel="stylesheet" />
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="asset/html5shiv/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body data-spy="scroll" data-target=".navbar">
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">噗浪背刺網</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="#login">開始背刺</a></li>
+              <li><a href="#whisper">悄稍話的不足</a></li>
+              <li><a href="#what">什麼是噗浪背刺</a></li>
+            </ul>
+          </div>
+          <img src="/asset/images/ajax-loader.gif" id="ajax-loader" alt=""/>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div data-lift="lift:msgs?showAll=true">
+        <lift:error_msg class="alert alert-error">
+          <button class="msgClose" data-dismiss="alert">×</button>
+        </lift:error_msg>
+        <lift:warning_msg class="alert alert-block">
+          <button class="msgClose" data-dismiss="alert">×</button>
+        </lift:warning_msg>
+        <lift:notice_msg class="alert alert-info">
+          <button class="msgClose" data-dismiss="alert">×</button>
+        </lift:notice_msg>
+      </div>
+
+      <div id="login" style="padding-top: 50px; margin-top: -50px" data-lift="Login">
+        <div class="hero-unit">
+          <form class="pull-right" data-lift="lift:Form.post">
+            <button id="loginButton" type="button" class="btn btn-primary" data-loading-text="登入中...">登入噗浪</button>
+          </form>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <script src="asset/js/jquery-1.9.1.min.js"></script>
+    <script src="asset/bootstrap/js/bootstrap.js"></script>
+    <script>
+      $('#loginButton').button();
+      $('#loginButton').click(function() {
+        $(this).button('loading');
+      });
+    </script>
+  </body>
+</html>
+

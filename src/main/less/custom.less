@@ -1,0 +1,53 @@
+@sidebarBackground: #FAFAD2;
+@stuffBackground: #99C7BC;
+@dialogBackground: #CCF;
+@dashboardBackground: #CCF;
+
+body {
+    /* 60px to make the container go all the way to the bottom of the topbar */
+    padding-top: 60px; 
+}
+
+.alert ul {
+    list-style: none;
+    margin-top:0.4em;
+}
+
+#ajax-loader {
+  padding-top: 4px;
+  float: right;
+  display: none;
+}
+
+.rounded-corners (@radius: 5px) {
+    border-radius: @radius;
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+}
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+    box-shadow:         @style @c;
+    -webkit-box-shadow: @style @c;
+    -moz-box-shadow:    @style @c;
+}
+
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+    .box-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+
+button.msgClose {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+
+  float: right;
+  color: fade(#000, 50%);
+  text-shadow: 0 1px 0 rgba(255,255,255,1);
+}
+
+button.msgClose:hover {
+  color: #000000;
+  font-weight: bold;
+}
