@@ -48,7 +48,7 @@ class Backstab {
     val plurkURL = plurk.plurkURL
     val message = S.?("Backstab successfully, plurk posted:")
 
-    S.notice(<span>{message} <a href={plurkURL}>{plurkURL}</a>)</span>)
+    S.notice(<span>{message} <a href={plurkURL}>{plurkURL}</a></span>)
   }
 
   /**
