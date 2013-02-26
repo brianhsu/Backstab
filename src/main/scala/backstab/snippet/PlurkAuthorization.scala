@@ -35,7 +35,10 @@ class PlurkAuthorization {
 
     authURL.foreach { S.redirectTo }
     authURL.failed.foreach { 
-      S.redirectTo("/", () => S.error("無法取得噗浪驗證網址，請稍候再試")) 
+      S.redirectTo(
+        "/", 
+        () => S.error(S.?("Can't get Plurk authorization URL, please try it later."))
+      ) 
     }
   }
 

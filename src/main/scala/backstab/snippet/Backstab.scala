@@ -33,7 +33,9 @@ class Backstab {
   /**
    *  Error message shows when we could not post to plurk.
    */
-  private def errorMessage: JsCmd = S.error("無法成功發文至噗浪，請稍候再試")
+  private def errorMessage: JsCmd = {
+    S.error(S.?("Post to Plurk server failed, please try it later."))
+  }
 
   /**
    *  Success message that shows when we posted to Plurk successfully.
@@ -44,12 +46,9 @@ class Backstab {
   private def successMessage(plurk: Plurk, blockUsers: Set[String]): JsCmd = {
 
     val plurkURL = plurk.plurkURL
-    val blockMessage = blockUsers.isEmpty match {
-      case true  => ""
-      case false => s"對 ${blockUsers.mkString(",")} "
-    }
+    val message = S.?("Backstab successfully, plurk posted:")
 
-    S.notice(<span>您成功地{blockMessage}進行了背刺 (<a href={plurkURL}>{plurkURL}</a>)</span>)
+    S.notice(<span>{message} <a href={plurkURL}>{plurkURL}</a>)</span>)
   }
 
   /**
@@ -66,11 +65,11 @@ class Backstab {
       val blockUsers = blocks.getUserNames
       val userIDs = friends.getUserIDs(true) -- blocks.getUserIDs()
 
-      val suffix = S.hostAndPath + " (#噗浪背刺網)"
+      val suffix = S.hostAndPath + S.?(" (# Backstap on Plurk)")
 
       
       userIDs.isEmpty match {
-        case true  => S.error("這樣子沒有收件人喲"); Noop
+        case true  => S.error(S.?("You don't have any receiver.")); Noop
         case false => {
 
           val newPlurk = plurkAPI.Timeline.plurkAdd(
@@ -103,16 +102,23 @@ class Backstab {
 
     } yield {
 
-      val commonOptions = List("multiple" -> JsTrue, "width" -> Str("100%"))
-
       val friendsComboBox = new FriendsComboBox(
         plurkAPI, 
-        "placeholder" -> Str("誰可以看到這則背刺？（空白則為全部的好友）") :: commonOptions
+        options = List(
+          "placeholder" -> Str(S.?("Who can see this post? (Empty for all friend)")),
+          "multiple" -> JsTrue,
+          "width" -> Str("100%")
+        )
       )
 
       val blocksComboBox = new FriendsComboBox(
         plurkAPI,
-        "placeholder" -> Str("誰看不到這則背刺") :: commonOptions
+        options = List(
+          "placeholder" -> Str(S.?("Who CANNOT see this post?")),
+          "multiple" -> JsTrue,
+          "width" -> Str("100%")
+        )
+
       )
 
       "#userDisplayName *" #> userInfo.basicInfo.displayName &
@@ -120,12 +126,18 @@ class Backstab {
       "#plurkContent" #> SHtml.onSubmit(content = _) &
       "#friends" #> friendsComboBox.comboBox &
       "#blocks" #> blocksComboBox.comboBox &
-      "#plurk" #> SHtml.ajaxSubmit("Plurk", postPlurk(friendsComboBox, blocksComboBox))
+      "#plurk" #> SHtml.ajaxSubmit(
+        S.?("Backstap"), 
+        postPlurk(friendsComboBox, blocksComboBox)
+      )
     }
 
     cssBinding.getOrElse { 
       // Otherwise, we direct it to homepage
-      S.redirectTo("/", () => S.error("無法自噗浪取得使用者資訊，請稍候再試"))
+      S.redirectTo(
+        "/", 
+        () => S.error(S.?("Can't get user data from Plurk, please try it later."))
+      )
       PassThru
     }
 
