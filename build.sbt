@@ -1,4 +1,4 @@
-name := "MyWhisper"        
+name := "Backstab"
 
 version := "0.1"        
 
