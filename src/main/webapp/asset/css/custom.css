@@ -26,3 +26,8 @@ button.msgClose:hover {
   color: #000000;
   font-weight: bold;
 }
+.box {
+  background: #eee;
+  padding: 15px;
+  width: 100%;
+}

@@ -50,11 +50,7 @@
 
       <div style="padding-top: 50px; margin-top: -50px">
 
-        <div>
-          開始背刺吧
-        </div>
-
-        <div data-lift="Backstab">
+        <div data-lift="Backstab" class="box">
           <form data-lift="lift:Form.ajax">
             <span id="userDisplayName" class="badge badge-info" style="padding: 10px; margin-top:5px">User</span>
             <select style="width: 10%" id="qualifier">
@@ -78,8 +74,17 @@
               <option value="needs">需要</option>
               <option value="wonders">好奇</option>
             </select>
-            <textarea rows="1" style="width: 60%" id="content"></textarea>
+            <textarea rows="1" style="width: 60%" id="plurkContent"></textarea>
             <button class="btn btn-primary" id="plurk" data-loading-text="背刺中...">背刺</button>
+            <div style="margin-top:1em">
+              <span class="label label-info" style="margin-top: 3px">誰可以看到這則背刺：</span><br/>
+              <div id="friends"></div>
+            </div>
+            <div style="margin-top: 1em">
+              <span class="label label-info" style="margin-top: 3px">你想要背刺誰：</span><br/>
+              <div id="blocks"></div>
+            </div>
+
           </form>
         </div>
       </div>

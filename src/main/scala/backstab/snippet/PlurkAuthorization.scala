@@ -13,7 +13,7 @@ class PlurkAuthorization {
 
   private lazy val plurkAPI = {
 
-    val callback = Props.get("plurk.callback", "http://localhost:8080/backstab")
+    val callback = s"${S.hostAndPath}/backstab"
     val appKey = Props.get("plurk.appKey", "yAW0goxD23qF")
     val appSecret = Props.get("plurk.appSecret", "agKpMI6qImQIzhJm11b3t9mvuZo7xpny")
 

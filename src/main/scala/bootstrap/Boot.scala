@@ -5,6 +5,8 @@ import net.liftweb.http.LiftRules
 import net.liftweb.http.Req
 import net.liftweb.http.XHtmlInHtml5OutProperties
 
+import net.liftmodules.combobox.ComboBox
+
 class Boot 
 {
   def boot 
@@ -17,6 +19,8 @@ class Boot
 
     LiftRules.ajaxStart = Full(() => LiftRules.jsArtifacts.show("ajax-loader").cmd)
     LiftRules.ajaxEnd = Full(() => LiftRules.jsArtifacts.hide("ajax-loader").cmd )
+
+    ComboBox.init
   }
 }
 
