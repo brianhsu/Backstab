@@ -20,14 +20,27 @@ import org.bone.soplurk.api.PlurkAPI
 import org.bone.soplurk.model.Plurk
 import org.bone.soplurk.constant.Qualifier
 
+/**
+ *  The snippet that posted plurk to Plurk server.
+ */
 class Backstab {
 
-  val plurkAPI = PlurkAPIBox.get.get
+  private val plurkAPI = PlurkAPIBox.get.get
 
   private var qualifier: String = _
   private var content: String = _
 
+  /**
+   *  Error message shows when we could not post to plurk.
+   */
   private def errorMessage: JsCmd = S.error("無法成功發文至噗浪，請稍候再試")
+
+  /**
+   *  Success message that shows when we posted to Plurk successfully.
+   *
+   *  @param  plruk       The new plurk we posted.
+   *  @param  blockUsers  Who has been blocked by us?
+   */
   private def successMessage(plurk: Plurk, blockUsers: Set[String]): JsCmd = {
 
     val plurkURL = plurk.plurkURL
@@ -39,8 +52,15 @@ class Backstab {
     S.notice(<span>您成功地{blockMessage}進行了背刺 (<a href={plurkURL}>{plurkURL}</a>)</span>)
   }
 
+  /**
+   *  Post to Plurk.
+   *
+   *  @param  friends   The combobox indicates who can see this plurk.
+   *  @param  blocks    The combobox indicated who cannot see this plurk.
+   */
   private def postPlurk(friends: FriendsComboBox, blocks: FriendsComboBox)(): JsCmd = {
 
+    // We only posted to Plurk if content is not empty.
     val postedJS = Option(content).filterNot(_.isEmpty).map { content =>
 
       val blockUsers = blocks.getUserNames
@@ -58,9 +78,12 @@ class Backstab {
 
       val newPlurk = scala.util.Failure(new Exception("test"))
 
-      newPlurk.map(plurk => successMessage(plurk, blockUsers)).getOrElse(errorMessage)
+      // If we posted successuflly, return the success message
+      newPlurk.map(plurk => successMessage(plurk, blockUsers))
+              .getOrElse(errorMessage)  // otherwise, return error message
     }
 
+    // Reset form status
     JsRaw("""$('#plurk').button('reset')""") &
     JsRaw("""$('#content').attr('disabled', false)""") &
     JsRaw("""$('#content').val('')""") &
@@ -69,6 +92,7 @@ class Backstab {
 
   def render = {
     
+    // We only binds our template if and only if we get user data from Plurk correctly.
     val cssBinding = for {
 
       (userInfo, _, _) <- plurkAPI.Users.currUser
@@ -95,7 +119,11 @@ class Backstab {
       "#plurk" #> SHtml.ajaxSubmit("Plurk", postPlurk(friendsComboBox, blocksComboBox))
     }
 
-    cssBinding.getOrElse(PassThru)
+    cssBinding.getOrElse { 
+      // Otherwise, we direct it to homepage
+      S.redirectTo("/", () => S.error("無法自噗浪取得使用者資訊，請稍候再試"))
+      PassThru
+    }
 
   }
 
