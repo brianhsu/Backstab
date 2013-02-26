@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>噗浪背刺網</title>
+    <title>Backstab on Plurk</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,12 +25,12 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="#">噗浪背刺網</a>
+          <a class="brand" href="#">Backstab on Plurk</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li><a href="#login">開始背刺</a></li>
-              <li><a href="#whisper">悄稍話的不足</a></li>
-              <li><a href="#what">什麼是噗浪背刺</a></li>
+              <li><a href="#login">Backstab Now</a></li>
+              <li><a href="#whisper">Problems with Plurk's Whisper</a></li>
+              <li><a href="#what">What is Backstab on Plurk</a></li>
             </ul>
           </div>
           <img src="/asset/images/ajax-loader.gif" id="ajax-loader" alt=""/>
@@ -40,7 +40,7 @@
     <div class="navbar navbar navbar-fixed-bottom">
       <div class="navbar-inner">
         <div class="container" style="margin-top:10px">
-          背刺網使用 <a href="http://www.scala-lang.org/">Scala</a> / <a href="http://liftweb.net/">Lift Web Framework</a> / <a href="https://github.com/brianhsu/SOPlurk">SOPlurk</a> 建立，你可以在 <a href="https://github.com/brianhsu/Backstab">GitHub</a> 上找到本站的碼程式。
+          Powered by <a href="http://www.scala-lang.org/">Scala</a> / <a href="http://liftweb.net/">Lift Web Framework</a> / <a href="https://github.com/brianhsu/SOPlurk">SOPlurk</a>, source code hosted on <a href="https://github.com/brianhsu/Backstab">GitHub</a>.
         </div>
       </div>
     </div>
@@ -60,12 +60,12 @@
 
       <div id="login" style="padding-top:60px; margin-top:-60px">
         <div class="box">
-          <h2>立即背刺</h2>
+          <h2>Backstab Now!</h2>
 
-          <p>噗浪背刺網提供了一個簡單的方法，讓你在選擇私噗的收件人的時候，可以使用減法來排除掉你不希望他知道你在說些什麼的人。</p>
+          <p>Backstab gives you a simple way to control who can see your Plurk post. Instead of only choose who can see your Plurk when posting, now you can explicitly choose those user you want to exclude from.</p>
 
           <div class="pull-right">
-            <a href="/backstab" class="btn btn-primary">開始背刺</a>
+            <a href="/backstab" class="btn btn-primary">Backstab!</a>
           </div>
           <div class="clearfix"></div>
         </div>
@@ -74,26 +74,26 @@
       <hr/>
 
       <div id="whisper" style="padding-top:60px; margin-top:-60px">
-        <span class="label"><h4>噗浪悄悄話的不足</h4></span>
+        <span class="label"><h4>Problems with Plurk's Whisper</h4></span>
         <div class="box">
-          <p>噗浪在前不久推出了一個「悄悄話」的功能，透過悄稍話發送的噗文，上面不會有你的名字，所以理論上沒人會知道那則噗是你發的……但事實證明，如果你沒有把回應功能關掉的話，我們經常可以從回應悄稍話的人，來推測出到底是誰發那則悄悄話的。</p>
-          <p>而另一方面，在噗浪上，悄悄話是不能選擇收件人的，換句話說，如果你的老闆和你在噗浪上互為好友，那麼你用悄悄話罵老闆的話，老闆能看得到，也知道有人在罵他。</p>
-          <p>基於上面的理由，悄悄話的使用其實相當受限制－－所有的朋友都看得到，而且只要透過比對回應的人，悄悄話通常不會是匿名的－－這是悄悄話的問題所在，他其實並沒有辦法讓我們隨心所欲地在別人的背後偷偷說些什麼事情，他在某方面反而是一種詔告天下，而且此地無銀三百兩的方法。</p>
+          <p>Plurk released a feature called <a href="http://en.blog.plurk.com/2013/01/21/what-is-anonymous-plurk/">Anonymous Plurk (Whisper)</a> recently. When you posted your Plurk by using this feature, the Plurk will be anonymous...theoretically. In fact, we often find that we could figure out who posted that anonymous by observe the users who responeded to that Plurk, and compare that to our friend's friend / fan list.</p>
+          <p>In the other hand, anonymous Plurk cannot be a private Plurk, which means all user that on your friend list, will be able to see that Plurk -- if you are complain about your boss, your boss will see that Plurk too.</p>
+          <p>Based on this two reason, anonymous Plurk is quite restrictive, and it's not really anonymous unless you disabled comments.</p>
         </div>
       </div>
 
       <hr/>
       <div id="what" style="padding-top:60px; margin-top:-60px">
-        <span class="label"><h4>什麼是噗浪背刺</h4></span>
+        <span class="label"><h4>What is Backstab on Plurk</h4></span>
         <div class="box">
-          <p>背刺者，從別人的背後捅一刀是也。</p>
-          <p>話說社交網路讓人們可以透過網路更輕易的互動，但也常常帶來一種進退兩難的狀況：當你的老闆／家人要求加你噗浪好友的時候你該怎麼辦？人際關係的拿捏不是件簡單的事情，我拒絕了老闆的好友請求的話，我在公司裡會不會受到影響？可是加了之後，就不能在上面幹譙老闆了，要怎麼辦？</p>
-          <p>同樣的，有些事情和抱怨實在不想讓父母親知道，但如果不加他們的話，他們又會覺得我在幹什麼壞事，我該怎麼辦才好呢？</p>
-          <p>還好，大部份的社交網路，像是噗浪，臉書或是 Google+，都提供了我們在發文的時候可以選擇這篇文章可以給誰看到。</p>
-          <p>但用這些社交網路愈久，就愈覺得目前各網站提供的選擇收件人方式都有所不足－－幾乎所有的社交網路，都是讓你用加法的方式選擇收件人－－你可以選擇「同班同學」再加上「小明」再加上「小華」，又或者你可以選擇所有的朋友。</p>
-          <p>但其實我認為這樣的方式彈性實在不夠，我要怎麼樣發給「辦公室」這個小圈圈裡的所有人，但扣掉那個討人厭的老闆，好來向大家抱怨他的無腦呢？除非小王一開始就不在「辦公式」裡面，不然的話，我就得把辦公室裡的人全部敲一次。</p>
-          <p>這好像是目前社交網站（是的，包括 Google+）在處理小圈圈的時候，都沒有意識到的一點－－<a href="http://bone.twbbs.org.tw/blog/2325.html">小圈圈是動態的，而小圈圈的本質是排擠，我們有的時候甚至會排擠自己所屬的小圈圈的某人</a>。</p>
-          <p>而噗浪背刺就是實作這種動態小圈圈的一種嚐試，你可以用減法的方式來選擇收件人。譬如說，你可以選擇「辦公室」這個小圈圈，但明確地把「老闆」給排除，當你透過這樣的設定發文後，即始「老闆」在「辦公室」這個小圈圈裡，他也不會收到這則噗。</p>
+          <p>Backstab on Plurk is a website that let you post your Plurk by not only choose who can see your post, but also explicitly excluded those user you don't want them to see your Plurk</p>
+          <p>Social network service is use heavily today, but sometimes you will have some delima -- should you reject your boss's friend request? If I rejected it, will there be any negative impact on my job? What if I want complain about him but without let him know it?</p>
+
+          <p>Most of SNS solve this by provides you a way to control who can see your post when you posting something. But only in one way -- choose who can see it.</p>
+
+          <p>Backstab on Plurk offers another way to control who can see your Plurk post, you could selected who cannot see your Plurks too!</p>
+
+          <p>For example, if you have a Plurk clique named <code>Office</code>, and your boss is in that list, by using Backstab on Plurk, you could choose <code>Office</code> as your private Plurk's receiver, but excluded your boss from it at same time.</p>
 
         </div>
       </div>

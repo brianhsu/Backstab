@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Backstab on Plurk</title>
+    <title>噗浪背刺網</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,7 +27,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="/">Backstab on Plurk</a>
+          <a class="brand" href="/">噗浪背刺網</a>
           <img src="/asset/images/ajax-loader.gif" id="ajax-loader" alt=""/>
         </div>
       </div>
@@ -36,7 +36,7 @@
     <div class="navbar navbar navbar-fixed-bottom">
       <div class="navbar-inner">
         <div class="container" style="margin-top:10px">
-          Powered by <a href="http://www.scala-lang.org/">Scala</a> / <a href="http://liftweb.net/">Lift Web Framework</a> / <a href="https://github.com/brianhsu/SOPlurk">SOPlurk</a>, source code hosted on <a href="https://github.com/brianhsu/Backstab">GitHub</a>.
+          背刺網使用 <a href="http://www.scala-lang.org/">Scala</a> / <a href="http://liftweb.net/">Lift Web Framework</a> / <a href="https://github.com/brianhsu/SOPlurk">SOPlurk</a> 建立，你可以在 <a href="https://github.com/brianhsu/Backstab">GitHub</a> 上找到本站的碼程式。
         </div>
       </div>
     </div>
@@ -62,34 +62,34 @@
           <form data-lift="lift:Form.ajax">
             <span id="userDisplayName" class="badge badge-info" style="padding: 10px; margin-top:5px">User</span>
             <select style="width: 10%" id="qualifier">
-              <option value="says">says</option>
-              <option value="loves">loves</option>
-              <option value="likes">likes</option>
-              <option value="shares">shares</option>
-              <option value="gives">gives</option>
-              <option value="hates">hates</option>
-              <option value="wants">wants</option>
-              <option value="has">has</option>
-              <option value="will">will</option>
-              <option value="asks">asks</option>
-              <option value="wishes">whishes</option>
-              <option value="was">was</option>
-              <option value="feels">feels</option>
-              <option value="thinks">thinks</option>
-              <option value="is">is</option>
+              <option value="says">說</option>
+              <option value="loves">愛</option>
+              <option value="likes">喜歡</option>
+              <option value="shares">分享</option>
+              <option value="gives">給</option>
+              <option value="hates">討厭</option>
+              <option value="wants">想要</option>
+              <option value="has">已經</option>
+              <option value="will">打算</option>
+              <option value="asks">問</option>
+              <option value="wishes">希望</option>
+              <option value="was">曾經</option>
+              <option value="feels">覺得</option>
+              <option value="thinks">想</option>
+              <option value="is">正在</option>
               <option value=":">:</option>
-              <option value="hopes">hopes</option>
-              <option value="needs">needs</option>
-              <option value="wonders">wonders</option>
+              <option value="hopes">希望</option>
+              <option value="needs">需要</option>
+              <option value="wonders">好奇</option>
             </select>
             <textarea rows="1" style="width: 60%" id="plurkContent"></textarea>
-            <button class="btn btn-primary" id="plurk" data-loading-text="Backstabing...">Backstab</button>
+            <button class="btn btn-primary" id="plurk" data-loading-text="背刺中...">背刺</button>
             <div style="margin-top:1em">
-              <span class="label label-info" style="margin-top: 3px">Who can see this:</span><br/>
+              <span class="label label-info" style="margin-top: 3px">誰可以看到這則背刺：</span><br/>
               <div id="friends"></div>
             </div>
             <div style="margin-top: 1em">
-              <span class="label label-info" style="margin-top: 3px">Who CANNOT see this: </span><br/>
+              <span class="label label-info" style="margin-top: 3px">你想要背刺誰：</span><br/>
               <div id="blocks"></div>
             </div>
 
