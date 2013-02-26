@@ -68,19 +68,23 @@ class Backstab {
 
       val suffix = S.hostAndPath + " (#噗浪背刺網)"
 
-      /*
-      val newPlurk = plurkAPI.Timeline.plurkAdd(
-        content = content + suffix, 
-        qualifier = Qualifier(qualifier), 
-        limitedTo = userIDs.toList
-      )
-      */
+      
+      userIDs.isEmpty match {
+        case true  => S.error("這樣子沒有收件人喲"); Noop
+        case false => {
 
-      val newPlurk = scala.util.Failure(new Exception("test"))
+          val newPlurk = plurkAPI.Timeline.plurkAdd(
+            content = content + suffix, 
+            qualifier = Qualifier(qualifier), 
+            limitedTo = userIDs.toList
+          )
 
-      // If we posted successuflly, return the success message
-      newPlurk.map(plurk => successMessage(plurk, blockUsers))
-              .getOrElse(errorMessage)  // otherwise, return error message
+          // If we posted successuflly, return the success message
+          newPlurk.map(plurk => successMessage(plurk, blockUsers))
+                  .getOrElse(errorMessage)  // otherwise, return error message
+        }
+
+      }
     }
 
     // Reset form status
