@@ -69,13 +69,15 @@ class FriendsComboBox(plurkAPI: PlurkAPI,
    */
   override def onSearching(term: String): List[ComboItem] = {
 
+    val lowerTerm = term.toLowerCase
     def hasKeyword(completion: Completion): Boolean = {
-      completion.nickname.contains(term) || completion.fullName.contains(term) ||
-      completion.displayName.map(_.contains(term)).getOrElse(false)
+      completion.nickname.toLowerCase.contains(lowerTerm) || 
+      completion.fullName.toLowerCase.contains(lowerTerm) ||
+      completion.displayName.map(_.toLowerCase.contains(lowerTerm)).getOrElse(false)
     }
 
     users.filter(user => hasKeyword(user._2)).map(user => createItem(user)).toList ++
-    cliques.filter(_.text.contains(term))
+    cliques.filter(_.text.toLowerCase.contains(lowerTerm))
   }
 
   /**

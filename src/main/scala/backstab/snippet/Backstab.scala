@@ -65,7 +65,7 @@ class Backstab {
       val blockUsers = blocks.getUserNames
       val userIDs = friends.getUserIDs(true) -- blocks.getUserIDs()
 
-      val suffix = S.hostAndPath + S.?(" (# Backstap on Plurk)")
+      val suffix = " " + S.hostAndPath + S.?(" (# Backstap on Plurk)")
 
       
       userIDs.isEmpty match {
