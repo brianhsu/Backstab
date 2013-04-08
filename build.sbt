@@ -30,7 +30,7 @@ libraryDependencies ++= Seq(
 (LessKeys.filter in (Compile, LessKeys.less)) := ("custom.less")
 
 (resourceManaged in (Compile, LessKeys.less)) <<= 
-    (sourceDirectory in Compile)(_ / "webapp" / "asset" / "css")
+    (sourceDirectory in Compile)(_ / "webapp" / "assets" / "css")
 
 (compile in Compile) <<= compile in Compile dependsOn (LessKeys.less in Compile)
 
