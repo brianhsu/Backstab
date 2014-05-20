@@ -14,11 +14,35 @@ import net.liftweb.http.SHtml
 
 import net.liftweb.util.Helpers._
 import net.liftweb.util.PassThru
+import net.liftweb.util.ClearClearable
 
 
 import org.bone.soplurk.api.PlurkAPI
 import org.bone.soplurk.model.Plurk
 import org.bone.soplurk.constant.Qualifier
+import org.bone.soplurk.model._
+import org.bone.soplurk.api.PlurkAPI._
+import scala.xml.Unparsed
+
+class ShowPost {
+
+  private val plurkAPI = PlurkAPIBox.get.get
+
+  def render = {
+
+    val Timeline(users, plurks) = plurkAPI.Timeline.getPlurks().get
+  
+    ClearClearable &
+    ".plurkPost" #> plurks.map { post =>
+      ".userName *" #> users.get(post.ownerID).map(_.displayName) &
+      ".qualifier *" #> post.qualifierTranslated &
+      ".content *+" #> Unparsed(post.content) &
+      ".url *" #>  post.plurkURL &
+      ".url [href]" #> post.plurkURL
+    }
+  }
+
+}
 
 /**
  *  The snippet that posted plurk to Plurk server.
