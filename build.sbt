@@ -2,7 +2,7 @@ name := "Backstab"
 
 version := "0.1"        
 
-scalaVersion := "2.10.3" 
+scalaVersion := "2.11.12" 
 
 seq(webSettings :_*)    
 
@@ -10,10 +10,10 @@ seq(lessSettings:_*)
 
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
-resolvers += "bone" at "http://bone.twbbs.org.tw/ivy"
+resolvers += "bone" at "http://brianhsu.moe/ivy"
 
 // Plurk Scala Binding Library
-libraryDependencies += "org.bone" %% "soplurk" % "0.1"
+libraryDependencies += "org.bone" %% "soplurk" % "0.3.6"
 
 // Java HTTP Servlet
 libraryDependencies ++= Seq(
@@ -23,8 +23,8 @@ libraryDependencies ++= Seq(
 
 // Lift Web Framework
 libraryDependencies ++= Seq(
-  "net.liftweb" %% "lift-webkit" % "2.5-RC1" % "compile->default",
-  "net.liftmodules" %% "combobox" % "2.5-RC1-0.2"
+  "net.liftweb" %% "lift-webkit" % "2.6.3" % "compile->default",
+  "net.liftmodules" %% "combobox" % "2.6-RC2-0.6"
 )
 
 (LessKeys.filter in (Compile, LessKeys.less)) := ("custom.less")

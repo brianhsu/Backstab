@@ -34,7 +34,7 @@ class ShowPost {
   
     ClearClearable &
     ".plurkPost" #> plurks.map { post =>
-      ".userName *" #> users.get(post.ownerID).map(_.displayName) &
+      ".userName *" #> users.get(post.ownerID).flatMap(_.displayName) &
       ".qualifier *" #> post.qualifierTranslated &
       ".content *+" #> Unparsed(post.content) &
       ".url *" #>  post.plurkURL &
